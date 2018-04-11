@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  toll_booth: one
+  timestamp: 2018-04-10 20:25:18
+  car: one
+  bill: one
+
+two:
+  toll_booth: two
+  timestamp: 2018-04-10 20:25:18
+  car: two
+  bill: two

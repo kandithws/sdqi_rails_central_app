@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  latitute: 9.99
+  longtitude: 9.99
+  toll_fee: 9.99
+
+two:
+  name: MyString
+  latitute: 9.99
+  longtitude: 9.99
+  toll_fee: 9.99
