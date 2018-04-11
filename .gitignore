@@ -6,7 +6,7 @@
 .idea
 # Ignore bundler config.
 /.bundle
-
+public/system
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

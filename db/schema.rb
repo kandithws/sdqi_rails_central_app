@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20180411132823) do
     t.boolean "payment_confirm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_bills_on_user_id"
+    t.bigint "users_id"
+    t.index ["users_id"], name: "index_bills_on_users_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20180411132823) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bills", "users"
+  add_foreign_key "bills", "users", column: "users_id"
   add_foreign_key "cars", "users"
   add_foreign_key "toll_fee_records", "bills"
   add_foreign_key "toll_fee_records", "cars"

@@ -1,0 +1,36 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user, :url => update_driving_license_path(@user) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :driving_license_number %>
+    <%= f.text_field :driving_license_number %>
+  </div>
+
+  <div class="form-group">
+    <% if @user.driving_license_img.exists? %>
+      <%= image_tag @user.driving_license_img.url(:thumb), class: "img-responsive property-images" %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :driving_license_img %>
+    <%= f.file_field :driving_license_img %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.submit "Update Driving License", class: 'btn btn-info' %>
+  </div>
+
+<% end %>

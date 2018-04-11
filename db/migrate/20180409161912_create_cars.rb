@@ -6,7 +6,7 @@ class CreateCars < ActiveRecord::Migration[5.1]
       t.string :car_model_name
       t.string :car_model_year
       t.string :color
-      t.references :user_dashboard, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
