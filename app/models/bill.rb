@@ -3,6 +3,10 @@ class Bill < ApplicationRecord
   belongs_to :user
   before_save :default_values
 
+  def exceed_deadline?
+    self.payment_deadline < DateTime.now
+  end
+
   private
   def default_values
     if self.payment_confirm.nil?

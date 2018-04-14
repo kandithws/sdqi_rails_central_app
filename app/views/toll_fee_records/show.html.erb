@@ -17,11 +17,11 @@
             </tr>
             <tr>
               <td>Toll Gate:</td>
-              <td> @toll_fee_record.toll_booth.name </td>
+              <td> <%= @toll_fee_record.toll_booth.name %> </td>
             </tr>
             <tr>
               <td>Toll Fee:</td>
-              <td> @toll_fee_record.toll_booth.toll_fee </td>
+              <td> <%= @toll_fee_record.toll_booth.toll_fee %> </td>
             </tr>
 
             <tr>
@@ -35,7 +35,7 @@
                 <% if @toll_fee_record.bill.nil? %>
                   None
                 <% else %>
-                  <%= @toll_fee_record.bill.id %>
+                  <%= link_to "#" + @toll_fee_record.bill.id.to_s, bill_path(@toll_fee_record.bill) %>
                 <% end %>
               </td>
             </tr>

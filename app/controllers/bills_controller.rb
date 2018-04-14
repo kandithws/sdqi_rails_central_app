@@ -19,6 +19,16 @@ class BillsController < ApplicationController
   end
 
   def show
+    if @bill.payment_confirm
+      flash[:success] = "This bill has already been paid"
+    else
+      if @bill.exceed_deadline?
+        flash[:error] = "ALERT! Already pass the payment deadline, you will be charged"
+      else
+        flash[:alert] = "Warning, you haven't paid this bill yet!"
+      end
+
+    end
   end
 
   # For manual slip upload & update
