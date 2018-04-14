@@ -1,0 +1,7 @@
+Dear <%= @user.firstname + " " + @user.lastname %>
+
+  Your new bill for this month is already generated, please pay <%= @bill.total_amount %> baht before <%= @bill.payment_deadline %>
+  For further details, see: <%= bill_url(@bill) %>
+
+Best Regards,
+   Toll Gate App Team.

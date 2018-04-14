@@ -26,9 +26,13 @@ class TollFeeRecordsController < ApplicationController
       @car = Car.find_by_license_plate_number(params[:license_plate_number])
       if @car
         @toll_fee_record = TollFeeRecord.create({toll_booth: @toll_booth, car:@car, timestamp: DateTime.now})
-        respond_to do |format|
-          format.json{ render json: '{"status": "success"}',status: :created}
+        if @toll_fee_record
+          NotificationMailer.notify_new_record(@car.user, @toll_fee_record).deliver
+          respond_to do |format|
+            format.json{ render json: '{"status": "success"}',status: :created}
+          end
         end
+
       else
         # Notfound send alert
         respond_to do |format|

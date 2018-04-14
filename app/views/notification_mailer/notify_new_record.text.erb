@@ -1,0 +1,8 @@
+Dear <%= @user.firstname + " " + @user.lastname %>
+
+    You have been charged <%= @record.toll_booth.toll_fee %> baht for using toll gate at <%= @record.toll_booth.name %>.
+
+    For further information see: <%= toll_fee_record_url(@record) %>
+
+Best Regards,
+   Toll Gate App Team.
