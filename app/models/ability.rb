@@ -31,20 +31,22 @@ class Ability
     user ||= User.new # guest user_dashboard (not logged in)
     if user.admin?
       can :manage, :all
-      can :access, :rails_admin       # only allow admin users to access Rails Admin
+      # can :access, :rails_admin       # only allow admin users to access Rails Admin
       # can :dashboard
 
     elsif user.member?
-      can :read, [Car, TollFeeRecord] do |item|
-        item.try(:user_dashboard) == user
+      can :read, [Car, TollFeeRecord, Bill] do |item|
+        item.try(:user) == user
       end
+
+      can :upload_slip, [Bill]
 
       can :create, [Car]
       can :update, [Car] do |item|
-        item.try(:user_dashboard) == user
+        item.try(:user) == user
       end
       can :destroy, [Car] do |item|
-        item.try(:user_dashboard) == user
+        item.try(:user) == user
       end
 
 

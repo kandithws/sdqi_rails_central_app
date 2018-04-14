@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :cars, dependent: :destroy
+  has_many :toll_fee_records, through: :cars
+  has_many :bills, dependent: :destroy
   validates_presence_of :email, :firstname, :lastname, :phone_number
   validates_uniqueness_of :email, :phone_number
   validates_uniqueness_of :driving_license_number, :allow_blank => true, :case_sensitive => false

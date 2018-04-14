@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    main_app.root_path
+    root_path
   end
 
   rescue_from CanCan::AccessDenied do |exception|

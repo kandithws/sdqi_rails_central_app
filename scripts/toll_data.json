@@ -1,0 +1,7 @@
+{
+  "config": {"api_key": "JvHRsPA1SkqPnlm10BM0rwtt", "url": "http://localhost:3000/api/toll_fee_record/create"},
+  "data": [
+  {"license_plate_number": "ABC-123"},
+  {"license_plate_number": "JKI-LMN"} 
+  ]
+}

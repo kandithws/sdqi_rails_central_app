@@ -1,0 +1,12 @@
+<tr>
+  <td class="hidden-xs"><%= order %></td>
+  <td> <%= record.toll_booth.name %> </td>
+  <td> <%= record.car.license_plate_number %> </td>
+  <td> <%= record.timestamp %> </td>
+  <td> <%= record.toll_booth.toll_fee %> </td>
+  <td align="center">
+    <%= link_to toll_fee_record_path(record), class: 'btn btn-default' do %>
+        <em class="glyphicon glyphicon-zoom-in"></em>
+    <% end %>
+  </td>
+</tr>

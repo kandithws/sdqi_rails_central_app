@@ -18,13 +18,22 @@
         <li class="active">
           <%= link_to "Dashboard", dashboard_path %>
         </li>
-        <li class="active">
-          <%= link_to "Cars", cars_path %>
-        </li>
+
 
         <li class="active">
           <% if current_user.admin? %>
             <%= link_to "Data Dashboard", rails_admin_path %>
+
+          <% else %>
+            <li class="active">
+              <%= link_to "Cars", cars_path %>
+            </li>
+            <li class="active">
+              <%= link_to "Toll Records", toll_fee_records_path %>
+            </li>
+            <li class="active">
+              <%= link_to "Bills", bills_path %>
+            </li>
           <% end %>
         </li>
 

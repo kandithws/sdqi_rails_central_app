@@ -4,7 +4,7 @@ class UserDashboardController < ApplicationController
 
   def dashboard
     @user = current_user
-    if @user.license_verified?
+    if @user.license_verified? && (!@user.admin)
       flash[:success] = 'Your Driving License is verified by Admin'
     else
       flash[:alert] = 'Your Driving License is not verified by Admin.'
@@ -38,6 +38,7 @@ class UserDashboardController < ApplicationController
 
   def update_driving_license
     p = driving_license_params
+    p[:license_verified] = false
     if @user.id == current_user.id
       if p[:driving_license_number].nil? || p[:driving_license_img].nil?
         flash[:error] = 'Please upload both field to proceed'

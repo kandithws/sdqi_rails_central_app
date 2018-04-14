@@ -10,7 +10,10 @@ gem 'cancancan'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'jquery-rails'
 gem 'paperclip', '~> 6.0.0'
-gem 'rails_admin', '~> 1.3'
+gem 'multipart-parser'
+# gem 'rails_admin', '~> 1.3'
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
@@ -36,6 +39,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#
+# Bootstrap
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

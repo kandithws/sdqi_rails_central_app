@@ -1,0 +1,16 @@
+<tr style=>
+  <td class="hidden-xs"><%= order %></td>
+  <td> <%= bill.created_at %> </td>
+  <td> <%= bill.payment_deadline %> </td>
+  <td> <%= bill.total_amount %> </td>
+  <% if bill.payment_confirm %>
+  <td> <em class="glyphicon glyphicon-ok"></em> </td>
+  <% else %>
+    <td><p> </p></td>
+  <% end %>
+  <td align="center">
+    <%= link_to bill_path(bill), class: 'btn btn-default' do %>
+      <em class="glyphicon glyphicon-zoom-in"></em>
+    <% end %>
+  </td>
+</tr>
