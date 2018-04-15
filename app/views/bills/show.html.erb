@@ -40,16 +40,18 @@
             </tbody>
           </table>
         </div>
+        <div class="panel-footer text-center">
         <% unless @bill.payment_confirm %>
-          <div class="panel-footer text-center">
             <button onclick="toggleUploadSlipForm()" class="btn btn-info"><em class="glyphicon glyphicon-tag"></em> Upload Payment Slip
               Attachment</button>
             <%= link_to bill_barcode_update_path(@bill), method: :post, class: "btn btn-info" do %>
               <em class="glyphicon glyphicon-barcode"></em> Generate Tesco Lotus Barcode
             <% end %>
-
-          </div>
         <% end %>
+         <%= link_to export_pdf_path(@bill), :target => '_blank' ,class: "btn btn-danger" do %>
+            <em class="glyphicon glyphicon-file"></em> Export Bill as PDF
+          <% end %>
+        </div>
       </div>
   </div>
 </div>

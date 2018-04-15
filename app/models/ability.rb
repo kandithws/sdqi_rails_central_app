@@ -47,6 +47,10 @@ class Ability
         item.try(:user) == user
       end
 
+      can :export_pdf, [Bill] do |item|
+        item.try(:user) == user
+      end
+
       can :create, [Car]
       can :update, [Car] do |item|
         item.try(:user) == user

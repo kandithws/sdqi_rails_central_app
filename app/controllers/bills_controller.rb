@@ -1,7 +1,8 @@
 class BillsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
-  before_action :set_bill, only: [:show, :update_slip, :update_barcode, :unconfirmed_show, :unconfirmed_update]
+  before_action :set_bill, only: [:show, :update_slip, :update_barcode,
+                                  :unconfirmed_show, :unconfirmed_update, :export_pdf]
 
   def index
     @bills = current_user.bills.order("created_at DESC")
@@ -42,8 +43,11 @@ class BillsController < ApplicationController
       else
         flash.now[:alert] = "Warning, you haven't paid this bill yet! or Admin has not confirmed the payment"
       end
-
     end
+  end
+
+  def export_pdf
+    render pdf: "Exported_Bill", template: "bills/export_pdf.html.erb", page_size: "A4", encoding: "UTF-8"
   end
 
   # Must be at least 20 Baht To use this feature
