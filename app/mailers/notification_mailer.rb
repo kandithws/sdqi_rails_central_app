@@ -13,12 +13,17 @@ class NotificationMailer < ApplicationMailer
     mail(to: @user.email, subject: 'New bill has been generated')
   end
 
-  # def notify_new_bill_fails(user)
-  #
-  # end
+  # Manual upload only
+  def notify_payment_confirm_accept(user, bill)
+    @user = user
+    @bill = bill
+    mail(to: @user.email, subject: 'Payment for bill #' + @bill.id.to_s + ' is accepted' )
+  end
 
-  def notify_payment_confirm(user, bill)
-
+  def notify_payment_confirm_reject(user, bill)
+    @user = user
+    @bill = bill
+    mail(to: @user.email, subject: 'Payment for bill #' + @bill.id.to_s + ' is rejected' )
   end
 
 end

@@ -4,10 +4,14 @@ class UserDashboardController < ApplicationController
 
   def dashboard
     @user = current_user
-    if @user.license_verified? && (!@user.admin)
-      flash[:success] = 'Your Driving License is verified by Admin'
+    if @user.admin
+      flash.now[:success] = 'You are logged in as Admin'
     else
-      flash[:alert] = 'Your Driving License is not verified by Admin.'
+      if @user.license_verified?
+        flash.now[:success] = 'Your Driving License is verified by Admin'
+      else
+        flash.now[:alert] = 'Your Driving License is not verified by Admin.'
+      end
     end
   end
 
@@ -26,7 +30,7 @@ class UserDashboardController < ApplicationController
         end
       end
     else
-      flash[:error] = 'Access Denied!'
+      flash.now[:error] = 'Access Denied!'
       redirect_to dashboard_path
     end
 
@@ -41,7 +45,7 @@ class UserDashboardController < ApplicationController
     p[:license_verified] = false
     if @user.id == current_user.id
       if p[:driving_license_number].nil? || p[:driving_license_img].nil?
-        flash[:error] = 'Please upload both field to proceed'
+        flash.now[:error] = 'Please upload both field to proceed'
         redirect_to upload_driving_license_path
       else
         respond_to do |format|
@@ -53,7 +57,7 @@ class UserDashboardController < ApplicationController
         end
       end
     else
-      flash[:error] = 'Access Denied!'
+      flash.now[:error] = 'Access Denied!'
       redirect_to dashboard_path
     end
   end

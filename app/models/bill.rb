@@ -2,6 +2,9 @@ class Bill < ApplicationRecord
   has_many :toll_fee_records, dependent: :nullify
   belongs_to :user
   before_save :default_values
+  has_attached_file :payment_evidence, styles: { :large =>   "500x500>" },
+                    default_url: "/images/missing.png"
+  validates_attachment_content_type :payment_evidence, :content_type => %w(image/jpeg image/jpg image/png)
 
   def exceed_deadline?
     self.payment_deadline < DateTime.now

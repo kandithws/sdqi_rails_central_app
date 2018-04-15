@@ -1,0 +1,16 @@
+<% if bill.exceed_deadline? %>
+  <tr style="background: #d4585c">
+<% else %>
+<tr>
+<% end %>
+  <td class="hidden-xs"><%= order %></td>
+  <td> <%= bill.id %> </td>
+  <td> <%= bill.user.id %> </td>
+  <td> <%= bill.created_at %> </td>
+  <td> <%= bill.payment_deadline %> </td>
+  <td align="center">
+    <%= link_to unconfirmed_bill_path(bill), class: 'btn btn-default' do %>
+      <em class="glyphicon glyphicon-zoom-in"></em>
+    <% end %>
+  </td>
+</tr>

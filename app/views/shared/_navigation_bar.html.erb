@@ -14,16 +14,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if user_signed_in? %>
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <%= link_to "Dashboard", dashboard_path %>
-        </li>
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <%= link_to "Dashboard", dashboard_path %>
+          </li>
 
 
-        <li class="active">
+
           <% if current_user.admin? %>
-            <%= link_to "Data Dashboard", rails_admin_path %>
-
+            <li class="active">
+              <%= link_to "Data Dashboard", rails_admin_path %>
+            </li>
+            <li class="active">
+              <%= link_to "Confirm Bills", unconfirmed_bills_path  %>
+            </li>
           <% else %>
             <li class="active">
               <%= link_to "Cars", cars_path %>
@@ -35,15 +39,20 @@
               <%= link_to "Bills", bills_path %>
             </li>
           <% end %>
-        </li>
 
-      </ul>
+
+        </ul>
       <% end %>
 
 
       <ul class="nav navbar-nav"></ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <li class="list-group-item list-group-item-danger">
+              <p>ADMIN</p>
+            </li>
+          <% end %>
           <li class="active">
             <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
           </li>

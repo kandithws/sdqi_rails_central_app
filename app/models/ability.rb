@@ -39,7 +39,9 @@ class Ability
         item.try(:user) == user
       end
 
-      can :upload_slip, [Bill]
+      can :update_slip, [Bill] do |item|
+        item.try(:user) == user
+      end
 
       can :create, [Car]
       can :update, [Car] do |item|

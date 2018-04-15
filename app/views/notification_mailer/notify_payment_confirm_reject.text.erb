@@ -1,0 +1,8 @@
+Dear <%= @user.firstname + " " + @user.lastname %>
+
+   Your Bill id: <%= @bill.id %> payment slip is "rejected" by admin. Please re-upload the payment evidence, change the payment method,
+   or contact us.
+   You may check your bill details at <%= bill_url(@bill) %> .
+
+Best Regards,
+   TollBooth-System App Team.
