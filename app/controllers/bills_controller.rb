@@ -1,7 +1,7 @@
 class BillsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
-  before_action :set_bill, only: [:show, :update_slip, :unconfirmed_show, :unconfirmed_update]
+  before_action :set_bill, only: [:show, :update_slip, :update_barcode, :unconfirmed_show, :unconfirmed_update]
 
   def index
     @bills = current_user.bills.order("created_at DESC")
@@ -43,6 +43,40 @@ class BillsController < ApplicationController
         flash.now[:alert] = "Warning, you haven't paid this bill yet! or Admin has not confirmed the payment"
       end
 
+    end
+  end
+
+  # Must be at least 20 Baht To use this feature
+  def update_barcode
+
+    if !@bill.payment_confirm
+        if @bill.total_amount >= 20.0
+          @bill.payment_method = "barcode"
+          st = @bill.update_attributes_omise_barcode
+          if st && @bill.save
+            respond_to do |format|
+              flash[:success] = "Your barcode is successfully generated, please check your email"
+              format.html{ redirect_to bill_path(@bill)}
+            end
+          else
+            respond_to do |format|
+              flash.now[:error] = "Cannot Update payment Barcode, or the previous barcode is not expired"
+              format.html{ redirect_to bill_path(@bill)}
+            end
+          end
+        else
+          respond_to do |format|
+            flash.now[:error] = "Cannot Create Barcode, total amount must be at least 20 Baht"
+            format.html{ redirect_to bill_path(@bill)}
+          end
+        end
+
+
+    else
+        respond_to do |format|
+          flash.now[:error] = "This payment has already confirm!"
+          format.html{ redirect_to root_path }
+        end
     end
   end
 

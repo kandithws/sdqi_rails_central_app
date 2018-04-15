@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414083529) do
+ActiveRecord::Schema.define(version: 20180415114400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20180414083529) do
     t.string "payment_evidence_content_type"
     t.integer "payment_evidence_file_size"
     t.datetime "payment_evidence_updated_at"
+    t.string "omise_barcode_url"
+    t.datetime "omise_barcode_expires_at"
+    t.datetime "omise_barcode_created_at"
+    t.string "omise_source_id"
+    t.string "omise_charge_id"
+    t.string "barcode_file_file_name"
+    t.string "barcode_file_content_type"
+    t.integer "barcode_file_file_size"
+    t.datetime "barcode_file_updated_at"
+    t.string "barcode_number"
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
 

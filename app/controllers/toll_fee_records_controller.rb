@@ -1,7 +1,6 @@
 require 'multipart_parser/reader'
 
 class TollFeeRecordsController < ApplicationController
-  # skip_before_filter :verify_authenticity_token
   protect_from_forgery with: :null_session # disable CRSF protection for api controller
   before_action :authenticate_user!, except: [:create]
   before_action :authenticate_tollbooth, only: [:create]

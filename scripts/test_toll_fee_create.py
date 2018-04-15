@@ -31,8 +31,11 @@ class TollBooth:
             return True
  
 if __name__ == '__main__':
-  print(argv[1])
-  toll_booth = TollBooth(argv[1])
-  toll_booth.post_next_request()
-  sleep(2)
-  toll_booth.post_next_request()
+    if len(argv) < 2:
+        print "Usage: test_toll_fee_create.py filename.json"
+        exit(0)
+
+    toll_booth = TollBooth(argv[1])
+    toll_booth.post_next_request()
+    sleep(2)
+    toll_booth.post_next_request()

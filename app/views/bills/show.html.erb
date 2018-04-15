@@ -21,7 +21,7 @@
             </tr>
             <tr>
               <td>Current payment method:</td>
-              <% if @bill.payment_method.nil? %>
+              <% if @bill.payment_method.blank? %>
                 <td> Not Selected </td>
               <% else %>
                 <td> <%= @bill.payment_method %> </td>
@@ -44,12 +44,42 @@
           <div class="panel-footer text-center">
             <button onclick="toggleUploadSlipForm()" class="btn btn-info"><em class="glyphicon glyphicon-tag"></em> Upload Payment Slip
               Attachment</button>
-            <a href="#" class="btn btn-info"><em class="glyphicon glyphicon-barcode"></em> Generate Tesco Lotus Barcode</a> <!-- Todo Add alert here -->
+            <%= link_to bill_barcode_update_path(@bill), method: :post, class: "btn btn-info" do %>
+              <em class="glyphicon glyphicon-barcode"></em> Generate Tesco Lotus Barcode
+            <% end %>
+
           </div>
         <% end %>
       </div>
   </div>
 </div>
+<% if @bill.barcode_file.exists? %>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 text-center">
+    <h3>Tesco Lotus Payment Barcode</h3>
+      <%= raw(Paperclip.io_adapters.for(@bill.barcode_file).read) %>
+      <p><%= @bill.barcode_number %></p>
+    <%if @bill.payment_confirm &&  (@bill.payment_method == "barcode")  %>
+      <div class="alert alert-info">
+        This Barcode has been used for this bill payment
+      </div>
+    <% else %>
+      <% if @bill.omise_barcode_expired? %>
+        <div class="alert alert-danger">
+          Your barcode has already expired! please generate a new one.
+        </div>
+      <% else %>
+        <div class="alert alert-success">
+          This barcode avaliable until <%= @bill.omise_barcode_expires_at %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+<% end %>
+
+<div clas="row">
 
 <div id="uploadSlipForm" class="panel panel-default" style="display: none">
   <div class="panel-heading">
@@ -84,8 +114,13 @@
 
 </div>
 
-<h2>Associated Toll Fee Records for this bill</h2>
-<%= render 'toll_fee_records/table', toll_fee_records: @bill.toll_fee_records %>
+</div>
+
+<div class="row text-center">
+  <h2>Associated Toll Fee Records for this bill</h2>
+  <%= render 'toll_fee_records/table', toll_fee_records: @bill.toll_fee_records %>
+</div>
+
 
 
 <script>
