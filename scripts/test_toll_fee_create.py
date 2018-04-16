@@ -36,6 +36,5 @@ if __name__ == '__main__':
         exit(0)
 
     toll_booth = TollBooth(argv[1])
-    toll_booth.post_next_request()
-    sleep(2)
-    toll_booth.post_next_request()
+    while(toll_booth.post_next_request()):
+        sleep(0.5)
