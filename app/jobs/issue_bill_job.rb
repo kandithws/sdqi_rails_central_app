@@ -5,11 +5,13 @@ class IssueBillJob < ActiveJob::Base
     fail_ids = []
     @users.each do |user|
       unissued_records = TollFeeRecord.where(car: user.cars, bill_id:nil) # get all records that not yet issued
-      new_bill = Bill.create({user: user, toll_fee_records: unissued_records, payment_deadline: 2.weeks.from_now})
-      if new_bill
-        NotificationMailer.notify_new_bill(user,new_bill).deliver
-      else
-        fail_ids << user.id
+      if unissued_records.count > 0
+        new_bill = Bill.create({user: user, toll_fee_records: unissued_records, payment_deadline: 2.weeks.from_now})
+        if new_bill
+          NotificationMailer.notify_new_bill(user,new_bill).deliver
+        else
+          fail_ids << user.id
+        end
       end
     end
 
