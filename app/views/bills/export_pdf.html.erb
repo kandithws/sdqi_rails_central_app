@@ -133,8 +133,8 @@
             <td>
               Bill To : <%= @bill.user.get_full_name %><br>
               <%= @bill.user.address %><br>
-              Email: <%= @bill.user.email %>
-              Phone: <%= @bill.user.phone_number %>
+              Email: <%= @bill.user.email %><br>
+              Phone Number: <%= @bill.user.phone_number %>
             </td>
           </tr>
         </table>
@@ -167,8 +167,8 @@
       </td>
     </tr>
 
+    <% @bill.toll_fee_records.each do |record| %>
     <tr class="item">
-      <% @bill.toll_fee_records.each do |record| %>
         <td>
           <%= record.toll_booth.name %>
         </td>
@@ -176,9 +176,8 @@
         <td>
           ฿<%= record.toll_booth.toll_fee %>
         </td>
-      <% end %>
     </tr>
-
+      <% end %>
     <tr class="total">
       <td></td>
 
