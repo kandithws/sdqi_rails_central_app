@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   post 'omise_callback', to: 'omise#omise_callback'
 
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Crono::Web, at: '/admin/scheduler'
+  end
+
   devise_for :users
   resources :cars
   get 'home/index'

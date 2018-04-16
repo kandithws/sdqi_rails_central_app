@@ -14,10 +14,16 @@ gem 'paperclip', '~> 6.0.0'
 gem 'multipart-parser'
 # gem 'rails_admin', '~> 1.3'
 
+
 gem 'font-awesome-sass', '~> 5.0.9'
 gem 'magnific-popup-rails', '~> 1.1.0'
 gem 'jquery-easing-rails'
 
+gem 'crono'
+gem 'daemons' # running crono as a background process
+
+gem 'haml'
+gem 'sinatra', '2.0.0.beta2', require: nil
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
