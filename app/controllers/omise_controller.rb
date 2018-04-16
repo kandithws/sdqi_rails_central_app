@@ -8,10 +8,11 @@ class OmiseController < ApplicationController
         @bill.payment_method = "barcode"
         @bill.payment_confirm = true
         if @bill.save
-          NotificationMailer.notify_payment_confirm_accept_omise(@user, @bill).deliver
+          NotificationMailer.notify_payment_confirm_accept_omise(@bill.user, @bill).deliver
           respond_to do |format|
             format.json { render json: '{status: success}', status: :created}
           end
+          return
         end
       end
     end

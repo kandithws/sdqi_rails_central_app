@@ -22,6 +22,10 @@ class User < ApplicationRecord
     !self.admin
   end
 
+  def get_full_name
+    self.name_prefix + self.firstname + " " + self.lastname
+  end
+
   private
   def default_values
     self.license_verified = false
