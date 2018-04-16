@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_attached_file :driving_license_img, styles: { :large =>   "500x500>", medium: "300x300>", thumb: "100x100>" },
                     default_url: "/images/missing.png"
   validates_attachment_content_type :driving_license_img, :content_type => %w(image/jpeg image/jpg image/png)
-  before_save :default_values
+  before_create :default_values
 
   def admin?
     self.admin
@@ -23,12 +23,15 @@ class User < ApplicationRecord
   end
 
   def get_full_name
-    self.name_prefix + self.firstname + " " + self.lastname
+    self.firstname + " " + self.lastname
   end
 
   private
   def default_values
     self.license_verified = false
+    if self.admin.nil?
+      self.admin = false
+    end
   end
 
 end
