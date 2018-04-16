@@ -1,37 +1,33 @@
 <div class="container">
-
-  <div class="row">
+  <div class="row justify-content-center">
     <h1>Welcome to Dashboard</h1>
-  </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-
-
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= @user.firstname + " " + @user.lastname%></h3>
+    <div class="col-lg-8 col-lg-offset-2 toppad">
+      <div class="card bg-light">
+        <div class="card-header">
+          <h3 class="card-title"><%= @user.firstname + " " + @user.lastname %></h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <div class="row">
             <div class="col-md-3 col-lg-3 " align="center"></div>
             <div class=" col-md-9 col-lg-9 ">
               <table class="table table-user-information">
                 <tbody>
                 <tr>
-                  <td>Email: </td>
-                  <td> <a href="mailto:<%= @user.email %>"><%= @user.email %></td>
+                  <td>Email:</td>
+                  <td><a href="mailto:<%= @user.email %>"><%= @user.email %></td>
                 </tr>
                 <tr>
                   <td>Joined Date:</td>
                   <td><%= @user.created_at %> </td>
                 </tr>
                 <tr>
-                  <td> Driving License Number: </td>
+                  <td> Driving License Number:</td>
                   <td> <%= @user.driving_license_number %> </td>
                 </tr>
 
                 <tr>
                 <tr>
-                  <td>Home Address: </td>
+                  <td>Home Address:</td>
                   <td><%= @user.address %></td>
                 </tr>
 
@@ -47,11 +43,10 @@
             </div>
           </div>
         </div>
-        <div class="panel-footer">
-          <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-          <span class="pull-right">
+        <div class="card-footer">
+          <span class="float-right">
             <%= link_to user_dashboard_edit_path, class: 'btn btn-warning' do %>
-              <i class="glyphicon glyphicon-edit"></i>
+              <i class="fa fa-edit"></i>
               <% end %>
           </span>
         </div>
@@ -59,5 +54,9 @@
       </div>
     </div>
   </div>
-  <%= link_to "Test Generate Bill", {:controller => :bills,:action => :create}, :method => :post%>
+</div>
+<% if current_user.admin? %>
+  <%= link_to "Test Generate Bill", {:controller => :bills, :action => :create}, :method => :post, class: 'btn btn-danger' %>
+<% end %>
+
 </div>

@@ -1,71 +1,57 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">TollGate Central APP</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    TollBooth System <em class="fa fa-hdd"></em>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <%= link_to "Dashboard", dashboard_path %>
+          <li class="nav-item active">
+            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </li>
-
-
-
           <% if current_user.admin? %>
-            <li class="active">
-              <%= link_to "Data Dashboard", rails_admin_path %>
+            <li class="nav-item active">
+              <%= link_to "Data Dashboard", rails_admin_path, class: "nav-link"  %>
             </li>
-            <li class="active">
-              <%= link_to "Confirm Bills", unconfirmed_bills_path  %>
+            <li class="nav-item active">
+              <%= link_to "Confirm Bills", unconfirmed_bills_path, class: "nav-link"  %>
             </li>
           <% else %>
-            <li class="active">
-              <%= link_to "Cars", cars_path %>
+            <li class="nav-item active">
+              <%= link_to "Cars", cars_path, class: "nav-link"  %>
             </li>
-            <li class="active">
-              <%= link_to "Toll Records", toll_fee_records_path %>
+            <li class="nav-item active">
+              <%= link_to "Toll Records", toll_fee_records_path, class: "nav-link"  %>
             </li>
-            <li class="active">
-              <%= link_to "Bills", bills_path %>
+            <li class="nav-item active">
+              <%= link_to "Bills", bills_path, class: "nav-link"  %>
             </li>
           <% end %>
 
-
-        </ul>
       <% end %>
+    </ul>
 
-
-      <ul class="nav navbar-nav"></ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <li class="list-group-item list-group-item-danger">
-              <p>ADMIN</p>
-            </li>
-          <% end %>
-          <li class="active">
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li class="active">
-            <%= link_to "Sign in", new_user_session_path %>
-          </li>
-          <li class="active">
-            <%= link_to "Sign Up", new_user_registration_path %>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <li class="list-group-item list-group-item-danger">
+            <p>ADMIN</p>
           </li>
         <% end %>
-
-      </ul>
-    </div>
-  </div><!-- /.container-fluid -->
+        <li class="nav-item active">
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link"  %>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "Sign in", new_user_session_path, class: "nav-link"  %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link"  %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>

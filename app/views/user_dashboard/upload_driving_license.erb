@@ -10,27 +10,35 @@
   </div>
 <% end %>
 
-<%= form_for @user, :url => update_driving_license_path(@user) do |f| %>
-
-  <div class="form-group">
-    <%= f.label :driving_license_number %>
-    <%= f.text_field :driving_license_number %>
-  </div>
-
-  <div class="form-group">
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-lg-offset-2">
     <% if @user.driving_license_img.exists? %>
-      <%= image_tag @user.driving_license_img.url(:thumb), class: "img-responsive property-images" %>
+      <figure class="figure">
+      <%= image_tag @user.driving_license_img.url(:large), class: "figure-img img-fluid" %>
+        <figcaption class="figure-caption">Your current upload driving license image.</figcaption>
+
+      </figure>
+      <br/><br/><br/>
+    <% end %>
+
+    <%= form_for @user, :url => update_driving_license_path(@user) do |f| %>
+
+      <div class="form-group">
+        <%= f.label :driving_license_number %>
+        <%= f.text_field :driving_license_number, class: "form-control"  %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :driving_license_img %>
+        <%= f.file_field :driving_license_img, class: "form-control"  %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.submit "Update Driving License", class: 'btn btn-info' %>
+      </div>
+
     <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :driving_license_img %>
-    <%= f.file_field :driving_license_img %>
-  </div>
-
-
-  <div class="form-group">
-    <%= f.submit "Update Driving License", class: 'btn btn-info' %>
-  </div>
-
-<% end %>
+</div>

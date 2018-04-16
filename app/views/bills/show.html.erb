@@ -1,14 +1,15 @@
 <div class="container" style="margin-top:10px;">
-  <div class="row form-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bill Details: Ref ID <%= @bill.id %></h3>
+  <div class="row justify-content-center">
+    <div class="col col-lg-8 col-lg-offset-2">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Bill Details: Ref ID <%= @bill.id %></h3>
         </div>
         <!--
         <div class="panel-image hide-panel-body">
         </div>
         -->
-        <div class="panel-body">
+        <div class="card-body">
           <table class="table">
             <tbody>
             <tr>
@@ -27,36 +28,38 @@
                 <td> <%= @bill.payment_method %> </td>
               <% end %>
             </tr>
-            <tr>
+
             <tr>
               <td>Payment Status:</td>
+              <td>
               <% if @bill.payment_confirm %>
-                <td><em class="glyphicon glyphicon-ok"></em></td>
-              <% else %>
-                <td><em class="glyphicon glyphicon-remove"></em></td>
+                <em class="fa fa-check-circle"></em>
               <% end %>
+              </td>
             </tr>
 
             </tbody>
           </table>
         </div>
-        <div class="panel-footer text-center">
+        <div class="card-footer" style="text-align: center;">
         <% unless @bill.payment_confirm %>
-            <button onclick="toggleUploadSlipForm()" class="btn btn-info"><em class="glyphicon glyphicon-tag"></em> Upload Payment Slip
+            <button onclick="toggleUploadSlipForm()" class="btn btn-info"><em class="fa fa-paperclip"></em> Upload Payment Slip
               Attachment</button>
             <%= link_to bill_barcode_update_path(@bill), method: :post, class: "btn btn-info" do %>
-              <em class="glyphicon glyphicon-barcode"></em> Generate Tesco Lotus Barcode
+              <em class="fa fa-barcode"></em> Generate Tesco Lotus Barcode
             <% end %>
         <% end %>
          <%= link_to export_pdf_path(@bill), :target => '_blank' ,class: "btn btn-danger" do %>
-            <em class="glyphicon glyphicon-file"></em> Export Bill as PDF
+            <em class="fa fa-file-pdf"></em> Export Bill as PDF
           <% end %>
         </div>
       </div>
+    </div>
   </div>
 </div>
+<br><br>
 <% if @bill.barcode_file.exists? %>
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-lg-8 col-lg-offset-2 text-center">
     <h3>Tesco Lotus Payment Barcode</h3>
       <%= raw(Paperclip.io_adapters.for(@bill.barcode_file).read) %>
@@ -79,31 +82,30 @@
 
   </div>
 </div>
+  <br><br>
 <% end %>
 
-<div clas="row">
+<div class="row justify-content-center">
 
-<div id="uploadSlipForm" class="panel panel-default" style="display: none">
-  <div class="panel-heading">
-    <h3 class="panel-title">Upload Payment Slip Attachment</h3>
+<div id="uploadSlipForm" class="card" style="display: none; width: 600px;">
+  <div class="card-header">
+    <h3 class="card-title">Upload Payment Slip Attachment</h3>
   </div>
-  <div class="panel-body">
+  <div class="card-body">
 
     <% if @bill.payment_evidence.exists? %>
-    <div class="row">
       <div class="alert alert-warning" role="alert">
         You have already upload the payment slip, re-upload will cause the current one to be deleted
       </div>
-      <%= image_tag  @bill.payment_evidence.url, class: "img-responsive" %>
-      <div class="caption">
+      <%= image_tag  @bill.payment_evidence.url, class: "card-img-top"%>
+      <div style="text-align: center;">
         <p>Uploaded at <%= @bill.payment_evidence_updated_at %> </p>
       </div>
-    </div>
     <% end %>
-    <div class="row">
+    <div class="form">
+      <p>Select Your attachment slip</p>
         <%= form_for @bill, url: update_slip_path, html: {multipart: true} do |form| %>
           <div class="form-group">
-            <%= label_tag "Select Your Payment Slip Attachment" %>
             <%= form.file_field :payment_evidence %>
           </div>
           <div class="form-group">
@@ -117,8 +119,8 @@
 </div>
 
 </div>
-
-<div class="row text-center">
+<br><br>
+<div class="row justify-content-center">
   <h2>Associated Toll Fee Records for this bill</h2>
   <%= render 'toll_fee_records/table', toll_fee_records: @bill.toll_fee_records %>
 </div>

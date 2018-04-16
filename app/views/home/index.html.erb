@@ -1,2 +1,104 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!-- Navigation -->
+<div id="page-top">
+
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">TOOLBOOTH-SYSTEM</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#demonstrate">Demonstrate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead text-center text-white d-flex">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <h1 class="text-uppercase">
+          <strong>BELIEVE US </strong>
+        </h1>
+        <hr>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <p class="text-faded mb-5">TOOLBOOTH-SYSTEM is an autonomous system where the long waiting ques are banned and
+          free pass system is introduced. Travel now pay in your home. </p>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
+
+<section class="vedios" id="demonstrate">
+
+    <div class="container">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h2>Working of the tollbooth-system</h2>
+
+
+        <iframe width="1138" height="640"
+                src="https://www.youtube.com/embed/cFD9BHzoYCA">
+        </iframe>
+      </div>
+
+    </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="section-heading">Let's Get In Touch!</h2>
+        <hr class="my-4">
+        <p class="mb-5">What ever the problem may be get in touch with us.We will solve it. </p>
+        <p class="mb-5">Your feedback is a precious tool for us to develop our output.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 ml-auto text-center">
+        <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+        <p>0851855037</p>
+      </div>
+      <div class="col-lg-4 mr-auto text-center">
+        <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+        <p>
+          <a href="TOOLBOOTH-SYSTEM@ait.asia">feedback@toolboath-system.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+

@@ -4,13 +4,13 @@
   <td> <%= bill.payment_deadline %> </td>
   <td> <%= bill.total_amount %> </td>
   <% if bill.payment_confirm %>
-  <td> <em class="glyphicon glyphicon-ok"></em> </td>
+  <td> <em class="fa fa-check-circle"></em> </td>
   <% else %>
     <td><p> </p></td>
   <% end %>
   <td align="center">
     <%= link_to bill_path(bill), class: 'btn btn-default' do %>
-      <em class="glyphicon glyphicon-zoom-in"></em>
+      <em class="fa fa-ellipsis-h"></em>
     <% end %>
   </td>
 </tr>

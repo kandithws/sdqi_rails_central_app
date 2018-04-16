@@ -30,7 +30,7 @@ class BillsController < ApplicationController
 
     flash.now[:success] = "Bill Generated"
     respond_to do |format|
-      format.html{ redirect_to root_path }
+      format.html{ redirect_to dashboard_path }
     end
   end
 
@@ -87,7 +87,7 @@ class BillsController < ApplicationController
   # For user to manually update slip
   def update_slip
     if !@bill.payment_confirm
-      @bill.assign_attributes(bill_params)
+      @bill.assign_attributes(params.require(:bill).permit(:payment_evidence))
       @bill.payment_method = "manual"
 
       if @bill.save
@@ -147,8 +147,8 @@ class BillsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def bill_params
-    params.require(:bill).permit(:payment_evidence)
-  end
+  # def bill_params
+  #   # params.require(:bill).permit(:payment_evidence)
+  # end
 
 end
