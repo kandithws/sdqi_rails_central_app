@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   get 'bills_unconfirmed/:id', to: 'bills#unconfirmed_show', as: 'unconfirmed_bill'
   post 'bills_unconfirmed/:id', to: 'bills#unconfirmed_update', as: 'unconfirmed_bill_update'
   post 'bills_update_barcode/:id', to: 'bills#update_barcode', as: 'bill_barcode_update'
-
+  post 'api/publish_license', to: 'toll_fee_records#create_with_image', as: 'create_with_image'
   get 'export_bill/:id', to: 'bills#export_pdf', as: 'export_pdf'
-  get '/admin/data_dashboard', to: 'home#dummy_rails_admin', as: 'rails_admin' # dummy to fake path when remove rails admin for debug
-  # mount RailsAdmin::Engine => '/admin/data_dashboard', as: 'rails_admin'
+  # get 'admin/data_dashboard', to: 'home#dummy_rails_admin', as: 'rails_admin' # dummy to fake path when remove rails admin for debug
+  mount RailsAdmin::Engine => '/admin/data_dashboard', as: 'rails_admin'
   root to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -7,12 +7,12 @@ end
 
 gem 'devise'
 gem 'cancancan'
-# gem 'bootstrap-sass', '~> 3.3.5.1'
+
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'paperclip', '~> 6.0.0'
 gem 'multipart-parser'
-# gem 'rails_admin', '~> 1.3'
+gem 'rails_admin', '~> 1.3'
 
 
 gem 'font-awesome-sass', '~> 5.0.9'
